@@ -48,14 +48,22 @@ export const FormLogin = () => {
           />
           <Input 
             id="password"
-            type="password"
             name="password"
+            type="password"
             label="🔑 Password"
             register={register({
-              required: true,
-              minLength: 6
+              required: {
+                value: true,
+                message: 'is required'
+              },
+              minLength: {
+                value: 6,
+                message: 'too short'
+              }
             })}
-            errors={errors.password?.type == 'minLength' && 'too shot' }
+            errors={
+              errors.password && errors.password?.message
+            }
           />
           <Button
             style={{ width: '100%' }}

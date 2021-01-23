@@ -22,7 +22,7 @@ export const Input = ({ register, label, errors, help, name, type, id }) => (
     <style jsx>{`
       .error {
         color: var(--error);
-        font-size: 0.75rem;
+        font-size: 0.875rem;
       }
       .input-wrapper {
         display: flex;
