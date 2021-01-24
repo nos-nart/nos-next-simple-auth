@@ -1,16 +1,37 @@
 import React from 'react'
 import { useForm } from "react-hook-form";
-import * as Yup from 'yup';
+import fetch from 'isomorphic-unfetch';
+import { useRouter } from 'next/router'
 import { Input, Button } from '@/components/index';
 
 export const FormLogin = () => {
   const [isSignUp, setIsSignUp] = React.useState(false);
-
+  const router = useRouter();
   const {register, handleSubmit, errors} = useForm();
-  
-  const onSubmit = data => console.log(data);
-  console.log('errors: ', errors);
-  
+  const contentType = 'application/json';
+
+  const onSubmit = async (data) => {
+    console.log('data: ', data);
+    try {
+      const res = await fetch(`/api/authenticate`, {
+        method: 'POST',
+        headers: {
+          Accept: contentType,
+          'Content-Type': contentType,
+        },
+        body: JSON.stringify(data)
+      })
+
+      if (!res.ok) {
+        throw new Error(res.status)
+      }
+
+      router.push('/');
+    } catch (error) {
+      // handle the error
+    }
+  };
+
   return (
     <>
       <div className="wrapper">
@@ -35,7 +56,7 @@ export const FormLogin = () => {
             register={register({
               required: {
                 value: true,
-                message: 'is required'
+                message: 'required'
               },
               pattern: {
                 value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
@@ -54,7 +75,7 @@ export const FormLogin = () => {
             register={register({
               required: {
                 value: true,
-                message: 'is required'
+                message: 'required'
               },
               minLength: {
                 value: 6,
