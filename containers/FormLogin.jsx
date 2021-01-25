@@ -19,7 +19,7 @@ export const FormLogin = () => {
           Accept: contentType,
           'Content-Type': contentType,
         },
-        body: JSON.stringify(data)
+        body: JSON.stringify({ ...data, isSignUp })
       })
 
       if (!res.ok) {
