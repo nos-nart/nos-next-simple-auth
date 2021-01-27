@@ -5,7 +5,7 @@ import fetch from 'isomorphic-unfetch';
 import { useRouter } from 'next/router'
 import { Input, Button } from '@/components/index';
 
-export const FormLogin = () => {
+export const FormRegister = () => {
   const [isLoading, setIsLoading] = React.useState(false);
   const router = useRouter();
   const {register, handleSubmit, errors} = useForm();
@@ -14,7 +14,7 @@ export const FormLogin = () => {
   const onSubmit = async (data) => {
     console.log('data: ', data);
     try {
-      const res = await fetch(`/api/login`, {
+      const res = await fetch(`/api/register`, {
         method: 'POST',
         headers: {
           Accept: contentType,
@@ -27,7 +27,7 @@ export const FormLogin = () => {
         throw new Error(res.status)
       }
 
-      router.push('/');
+      router.push('/login');
     } catch (error) {
       // handle the error
     }
@@ -37,6 +37,16 @@ export const FormLogin = () => {
     <>
       <div className="wrapper">
         <form onSubmit={handleSubmit(onSubmit)}>
+          <Input 
+            id="name"
+            name="name"
+            type="text"
+            label="👩‍💻 Name"
+            register={register({
+              required: true
+            })}
+            errors={errors.name}
+          />
           <Input 
             id="email"
             name="email"
@@ -81,19 +91,19 @@ export const FormLogin = () => {
             // disabled={errors}
             loading={isLoading}
           >
-            Log in
+            Sign up
           </Button>
           <p className="error">{}</p>{" "}
         </form>
         <p className="log-in-prompt">
-          Need an account?
+          Have an account?
           <span className="small">
             Click below, fill out the form!
           </span>
         </p>
-        <Link href="/register">
+        <Link href="/login">
           <a>
-            <Button style={{ width: '100%' }}>Sign up</Button>
+            <Button style={{ width: '100%' }}>Log in</Button>
           </a>
         </Link>
       </div>

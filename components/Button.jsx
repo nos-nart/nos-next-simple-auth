@@ -3,7 +3,7 @@ import React from 'react';
 export const Button = (props) => (
   <>
     <button className="btn" disabled={props.loading} {...props}>
-      {props.children} {props.loading && " - loading ..."}
+      {props.children} {props.loading ? " - loading ..." : ""}
     </button>
     <style jsx>{`
       .btn {

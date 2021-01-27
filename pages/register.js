@@ -1,13 +1,13 @@
 import React from 'react';
 import Router from 'next/router';
 
-import { FormLogin } from '@/containers/index';
+import { FormRegister } from '@/containers/index';
 import { AuthLayout } from '@/layouts/index';
 
-export default function Login() {
+export default function Register() {
   return (
     <AuthLayout>
-      <FormLogin />
+      <FormRegister />
     </AuthLayout>
   )
 }

@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 
-const MONGODB_URI = `mongodb+srv://nosnart:${process.env.MONGODB_PW}@cluster0.awvy8.mongodb.net/<dbname>?retryWrites=true&w=majority`;
+const { MONGODB_URI } = process.env;
 
 async function dbConnect() {
   // check if we have a connection to the database or if it's currently
