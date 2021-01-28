@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
+    "cookie": "^0.4.1",
     "isomorphic-unfetch": "^3.1.0",
     "mongoose": "^5.11.13",
     "next": "10.0.5",
